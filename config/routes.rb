@@ -3,6 +3,8 @@ Bloccit::Application.routes.draw do
 
   get 'welcome/about'
 
+  get 'welcome/faq'
+
   root 'welcome#index'
 
 end
