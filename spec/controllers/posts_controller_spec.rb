@@ -62,7 +62,7 @@ describe "POST create" do
        get :show, {id: my_post.id}
        expect(response).to have_http_status(:success)
      end
-     
+
      it "renders the #show view" do
  # #17
        get :show, {id: my_post.id}
