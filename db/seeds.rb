@@ -21,6 +21,15 @@ include RandomData
    )
  end
 
+ 50.times do
+   Question.create!(
+   title: RandomData.random_sentence,
+   body: RandomData.random_sentence,
+   resolved: RandomData.random_boolean
+   )
+ end
+
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
+ puts "#{Questions.count} questions created"

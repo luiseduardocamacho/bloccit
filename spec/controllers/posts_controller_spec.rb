@@ -25,7 +25,6 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-
   it "renders the #new view" do
           get :new
           expect(response).to render_template :new
