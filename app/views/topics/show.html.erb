@@ -6,6 +6,7 @@
    <div class="col-md-8">
      <p class="lead"><%= @topic.description %></p>
  <!-- #10 -->
+    <h1>Regular Posts</h1>
      <% @topic.posts.each do |post| %>
        <div class="media">
          <div class="media-body">
@@ -19,9 +20,20 @@
          </div>
        </div>
      <% end %>
+     <h1>Sponsored Posts</h1>
+     <% @topic.sponsored_posts.each do |sponsored| %>
+       <div class="media">
+         <div class="media-body">
+           <h4 class="media-heading">
+              <%= link_to sponsored.title, topic_sponsored_post_path(@topic, sponsored) %>
+           </h4>
+         </div>
+       </div>
+       <% end %>
    </div>
    <div class="col-md-4">
-     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %><br/><br/>
+     <%= link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: 'btn btn-success' %><br/><br/>
      <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this topic?' } %>
  ...
    </div>
