@@ -5,6 +5,6 @@ Bloccit::Application.routes.draw do
   resources :users, only: [:new, :create]
   get 'about' => 'welcome#about'
   root 'welcome#index'
-
+  post 'confirm' => 'users#confirm'
 
 end
