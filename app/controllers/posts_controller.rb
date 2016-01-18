@@ -2,7 +2,10 @@
 
     before_action :require_sign_in, except: :show
 
-    before_action :authorize_user, except: [:show, :new, :create]
+    before_action :authorize_user, except: [:show, :new, :create, :edit, :update]
+
+    before_action :authorize_moderator, only: [:edit, :update]
+
   def show
     @post = Post.find(params[:id])
   end
@@ -53,7 +56,7 @@
        end
      end
 
-     private
+  private
 
    def post_params
      params.require(:post).permit(:title, :body)
@@ -62,8 +65,16 @@
    def authorize_user
      post = Post.find(params[:id])
  # #11
-     unless current_user == post.user || current_user.admin?
+      unless current_user == post.user || current_user.admin?
        flash[:alert] = "You must be an admin to do that."
+       redirect_to [post.topic, post]
+     end
+   end
+
+   def authorize_moderator
+     post = Post.find(params[:id])
+     unless current_user == post.user || current_user.admin? || current_user.moderator?
+       flash[:alert] = "You must be an admin or moderator to do that."
        redirect_to [post.topic, post]
      end
    end
