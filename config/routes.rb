@@ -1,4 +1,8 @@
 Bloccit::Application.routes.draw do
+  get 'ratings/edit'
+
+  get 'ratings/show'
+
   get 'labels/show'
 
   resources :topics do
