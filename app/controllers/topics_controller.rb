@@ -36,6 +36,8 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
 
     @topic.assign_attributes(topic_params)
+    #@topic.rating = Rating.find_by severity: params[:topic][:rating]
+    @topic.update_rating(params[:topic][:rating])
 
     if @topic.save
       @topic.labels = Label.update_labels(params[:topic][:labels])

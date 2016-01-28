@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
+  belongs_to :rating
   has_many :comments, dependent: :destroy
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
@@ -12,4 +13,9 @@ class Post < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
   validates :topic, presence: true
   validates :user, presence: true
+
+  def update_rating(rating_string)
+    self.rating = Rating.find_by severity: rating_string
+  end
+
 end

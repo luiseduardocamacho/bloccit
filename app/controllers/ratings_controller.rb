@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+
   def edit
   end
 
