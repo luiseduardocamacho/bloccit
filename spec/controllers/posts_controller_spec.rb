@@ -199,6 +199,14 @@ RSpec.describe PostsController, type: :controller do
         post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
         expect(response).to redirect_to [my_topic, Post.last]
       end
+
+      it "creates a favorite instance" do
+        post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        post_instance = assigns(:post)
+        favorite_instance = Favorite.where(post: post_instance, user: my_user)
+        expect(favorite_instance).not_to be_nil
+      end
+
     end
 
     describe "GET edit" do
