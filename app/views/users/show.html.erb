@@ -19,8 +19,14 @@
    </div>
  </div>
 
+<%if has_posts_or_comments?%>
  <h2>Posts</h2>
- <%= render @user.posts %>
-
+  <%= render @user.posts %>
  <h2>Comments</h2>
- <%= render @user.comments %>
+  <%= render @user.comments %>
+<% else %>
+  <%=@user.name%> <%="has not submitted any posts yet."%>
+<%end %>
+
+<h2>Favorite Posts</h2>
+<%= render "favorites/userfavorite"%>

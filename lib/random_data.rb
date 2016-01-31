@@ -36,4 +36,9 @@ module RandomData
   def random_email
     "#{random_word}@#{random_word}.#{random_word}"
   end
+
+  def random_vote
+    (-1..1).to_a.sample
+  end
+
 end

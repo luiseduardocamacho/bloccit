@@ -1,0 +1,15 @@
+<div class="media">
+   <div class="media-body">
+     <!-- <h4 class="media-heading"> -->
+       <div class= "favorites">
+       <% @user.favorites.each do |favorite| %>
+           <%= link_to favorite.post.title, topic_post_path(favorite.post.topic, favorite.post) %>
+           <%= image_tag favorite.post.user.avatar_url(48)%>
+           <%= "Comments: #{favorite.post.comments.count}"%> -
+           <%= "Favorites: #{favorite.post.votes.count}"%>
+           <br/>
+       <% end%>
+      </div>
+    <!--  </h4>-->
+   </div>
+ </div>
