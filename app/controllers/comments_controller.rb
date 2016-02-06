@@ -1,20 +1,22 @@
 class CommentsController < ApplicationController
   before_action :require_sign_in
   before_action :authorize_user, only: [:destroy]
+
    def create
-
      @post = Post.find(params[:post_id])
-     comment = @post.comments.new(comment_params)
-     comment.user = current_user
+     @comment = @post.comments.new(comment_params)
+     @comment.user = current_user
+     @new_comment = Comment.new
 
-     if comment.save
+     if @comment.save
        flash[:notice] = "Comment saved successfully."
-
-       redirect_to [@post.topic, @post]
      else
        flash[:alert] = "Comment failed to save."
+     end
 
-       redirect_to [@post.topic, @post]
+     respond_to do |format|
+       format.html
+       format.js
      end
    end
 
@@ -37,7 +39,7 @@ class CommentsController < ApplicationController
 
    private
 
- # #14
+
    def comment_params
      params.require(:comment).permit(:body)
    end
