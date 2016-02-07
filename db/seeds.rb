@@ -46,7 +46,7 @@ rand(1..5).times {post.votes.create!(value: [-1,1].sample, user: users.sample)}
 
  user = User.first
  user.update_attributes!(
-  email: 'luiscamacho@gmail.com',
+  email: 'camacho@knightfoundation.org',
   password: 'helloworld'
 )
 

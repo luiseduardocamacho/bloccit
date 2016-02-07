@@ -18,4 +18,11 @@ Bloccit::Application.routes.draw do
 
   get 'about' => 'welcome#about'
   root 'welcome#index'
+
+  namespace :api do
+     namespace :v1 do
+       resources :users, only: [:index, :show]
+       resources :topics, only: [:index, :show]
+     end
+   end
 end
