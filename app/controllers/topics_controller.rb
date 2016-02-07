@@ -10,6 +10,10 @@ class TopicsController < ApplicationController
 
   def show
      @topic = Topic.find(params[:id])
+     unless @topic.public || current_user
+       flash[:alert] = "You must be signed in to view private topics."
+       redirect_to new_session_path
+     end
    end
 
    def new
