@@ -23,8 +23,11 @@ Bloccit::Application.routes.draw do
      namespace :v1 do
        resources :users, only: [:index, :show, :create, :update]
        resources :topics, except: [:edit, :new]
-       resources :posts, only: [:index, :show]
+       resources :posts, except: [:edit, :new]
        resources :comments, only: [:index, :show]
+       resources :topics do
+         resources :posts, only: [:create]
+       end
      end
    end
 end
