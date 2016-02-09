@@ -3,6 +3,7 @@ require 'rails_helper'
  RSpec.describe Api::V1::TopicsController, type: :controller do
    let(:my_user) { create(:user) }
    let(:my_topic) { create(:topic) }
+   let(:my_post){create(:post)}
 
 
    context "unauthenticated user" do
@@ -25,6 +26,11 @@ require 'rails_helper'
         post :create, topic: {name: "Topic Name", description: "Topic Description"}
         expect(response).to have_http_status(401)
      end
+
+  #   it "POST create returns http unauthenticated" do
+  #     post :create_post, topic: {name: "Topic Name", description: "Topic Description", post: {title: "Post Name", body: "Post Description"}}
+  #     expect(response).to have_http_status(401)
+  #   end
 
      it "DELETE destroy returns http unauthenticated" do
         delete :destroy, id: my_topic.id
@@ -104,7 +110,7 @@ require 'rails_helper'
          expect(hashed_json["description"]).to eq(@new_topic.description)
        end
      end
-     
+
      describe "DELETE destroy" do
        before { delete :destroy, id: my_topic.id }
 
